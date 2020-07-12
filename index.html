@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Warning!</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+
+    <style>
+      body { 
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+        overflow: hidden;
+      }
+
+      h1 { 
+        padding: 1rem;
+        margin: 0;
+        color: #673AB7;
+      }
+
+      .dialogs {
+        text-align: center;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+      }
+
+      .dialogs .footer {
+        text-align: right;
+        margin-right: 1rem;
+        margin-top: 1rem;
+      }
+
+      .dialogs .footer .button {
+        display: inline-block;
+        margin: 1rem 0.5rem;
+        font-weight: 700;
+        cursor: pointer;
+        color: #673AB7;
+      }
+    </style>
+
+    <script>
+      require('./client.js')
+    </script>
+  </head>
+  <body>
+    <div class="dialogs">
+      <h1>Warning!</h1>
+
+      <div>시간은 되돌릴 수 없습니다.</div>
+      <div>그래도 플레이 하시겠습니까?</div>
+
+      <div class="footer">
+        <div class="button cancel" id="cancel-button">30분 무시</div>
+        <div class="button confirm" id="confirm-button">FM 종료</div>
+      </div>
+    </div>
+  </body>
+</html>

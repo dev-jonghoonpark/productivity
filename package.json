@@ -1,0 +1,20 @@
+{
+  "name": "productivity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "build": "electron-packager . productivity --overwrite --icon=resources/images/logo.ico"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^9.1.0",
+    "electron-packager": "^15.0.0"
+  },
+  "dependencies": {
+    "ps-node": "^0.1.6"
+  }
+}
