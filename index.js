@@ -61,7 +61,30 @@ app.on('activate', () => {
 let tray = null
 app.on('ready', () => {
   tray = new Tray(__dirname + '/resources/images/tray.png')
+  let checked = app.getLoginItemSettings().openAtLogin;
   const contextMenu = Menu.buildFromTemplate([
+    {
+      label: '자동실행',
+      type: 'checkbox',
+      checked: checked,
+      click() {
+        if (checked) {
+          app.setLoginItemSettings({
+            openAtLogin: false,
+            path: app.getPath("exe")
+          });
+          console.log('disable auto start');
+          checked = false;
+        } else {
+          app.setLoginItemSettings({
+            openAtLogin: true,
+            path: app.getPath("exe")
+          });
+          console.log('enable auto start');
+          checked = true;
+        }
+      }
+    },
     {
       label: '종료',
       click() {
@@ -74,11 +97,6 @@ app.on('ready', () => {
 })
 
 // 이 파일에는 나머지 앱의 특정 주요 프로세스 코드를 포함시킬 수 있습니다. 별도의 파일에 추가할 수도 있으며 이 경우 require 구문이 필요합니다.
-
-app.setLoginItemSettings({
-  openAtLogin: true,
-  path: app.getPath("exe")
-});
 
 ipcMain.on('detect', (event, arg) => {
   win.show();
