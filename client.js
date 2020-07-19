@@ -14,6 +14,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     worker.postMessage({ type: 'confirm' });
     ipcRenderer.send('confirm');
   }
+
+  ipcRenderer.on('clear', (event, arg) => {
+    console.log('clear called from index.js');
+    worker.postMessage({ type: 'clear' });
+  })
 });
 
 worker.onmessage = (event) => {

@@ -172,11 +172,13 @@ ipcMain.on('detect', (event, arg) => {
             console.log(err);
           }
         });
+
+        win.webContents.send('clear');
       }
     }
   } else {
     win.show();
-    
+
     win.setAlwaysOnTop(true, 'floating')
     win.setVisibleOnAllWorkspaces(true);
     win.setFullScreenable(false);
@@ -219,4 +221,4 @@ ipcMain.on('hideDoNotDisturbWin', (event, arg) => {
   console.log('hideDoNotDisturbWin')
 
   doNotDisturbWin.hide();
-}) 
+})
