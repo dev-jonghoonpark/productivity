@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>DO_NOT_DISTURB!</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+
+    <style>
+      body { 
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+        overflow: hidden;
+      }
+
+      h1 { 
+        padding: 1rem;
+        margin: 0;
+        color: #673AB7;
+      }
+
+      .dialogs {
+        text-align: center;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+      }
+
+      .dialogs .footer {
+        text-align: right;
+        margin-right: 1rem;
+        margin-top: 1rem;
+      }
+
+      .dialogs .footer .button {
+        display: inline-block;
+        margin: 1rem 0.5rem;
+        font-weight: 700;
+        cursor: pointer;
+        color: #673AB7;
+      }
+
+      .dialogs .timepicker {
+        display: inline-block;
+      }
+
+      .dialogs .timepicker .label {
+        display: inline-block;
+      }
+
+      .dialogs .timepicker select {
+        display: inline-block;
+      }
+
+      .dialogs .timepicker select:first-child {
+        margin-right: 0.5rem;
+      }
+
+      .dialogs .timepicker select:last-child {
+        margin-left: 0.5rem;
+      }
+    </style>
+
+    <script>
+      const {ipcRenderer} = require('electron');
+
+      document.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('cancel-button').onclick = function () {
+          ipcRenderer.send('hideDoNotDisturbWin');
+        }
+
+        document.getElementById('confirm-button').onclick = function () {
+          let selects = document.getElementsByTagName('select');
+          ipcRenderer.send('setDoNotDisturb', { start: parseInt(selects[0].value), end: parseInt(selects[1].value) });
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div class="dialogs">
+      <h1>방해금지모드 설정</h1>
+
+      <div>
+        <div class="timepicker">
+          <div class="label">시작</div>
+          <select>
+            <option value="0">00:00</option>
+            <option value="1">01:00</option>
+            <option value="2">02:00</option>
+            <option value="3">03:00</option>
+            <option value="4">04:00</option>
+            <option value="5">05:00</option>
+            <option value="6">06:00</option>
+            <option value="7">07:00</option>
+            <option value="8">08:00</option>
+            <option value="9" selected>09:00</option>
+            <option value="10">10:00</option>
+            <option value="11">11:00</option>
+            <option value="12">12:00</option>
+            <option value="13">13:00</option>
+            <option value="14">14:00</option>
+            <option value="15">15:00</option>
+            <option value="16">16:00</option>
+            <option value="17">17:00</option>
+            <option value="18">18:00</option>
+            <option value="19">19:00</option>
+            <option value="20">20:00</option>
+            <option value="21">21:00</option>
+            <option value="22">22:00</option>
+            <option value="23">23:00</option>
+          </select>
+        </div>
+        <div class="timepicker">
+          <div class="label">종료</div>
+          <select>
+            <option value="0">00:00</option>
+            <option value="1">01:00</option>
+            <option value="2">02:00</option>
+            <option value="3">03:00</option>
+            <option value="4">04:00</option>
+            <option value="5">05:00</option>
+            <option value="6">06:00</option>
+            <option value="7">07:00</option>
+            <option value="8">08:00</option>
+            <option value="9">09:00</option>
+            <option value="10">10:00</option>
+            <option value="11">11:00</option>
+            <option value="12">12:00</option>
+            <option value="13">13:00</option>
+            <option value="14">14:00</option>
+            <option value="15">15:00</option>
+            <option value="16">16:00</option>
+            <option value="17">17:00</option>
+            <option value="18" selected>18:00</option>
+            <option value="19">19:00</option>
+            <option value="20">20:00</option>
+            <option value="21">21:00</option>
+            <option value="22">22:00</option>
+            <option value="23">23:00</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="button cancel" id="cancel-button">닫기</div>
+        <div class="button confirm" id="confirm-button">설정</div>
+      </div>
+    </div>
+  </body>
+</html>

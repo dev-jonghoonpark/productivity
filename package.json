@@ -12,9 +12,17 @@
   "license": "ISC",
   "devDependencies": {
     "electron": "^9.1.0",
+    "electron-builder": "^22.7.0",
     "electron-packager": "^15.0.0"
   },
   "dependencies": {
+    "electron-store": "^6.0.0",
+    "moment": "^2.27.0",
     "ps-node": "^0.1.6"
+  },
+  "build" : {
+    "win": {
+      "icon": "./resources/images/logo.png"
+    }
   }
 }

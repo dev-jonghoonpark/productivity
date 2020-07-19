@@ -66,5 +66,3 @@ ts-gen
 # Used to accelerate CI builds
 .depshash
 .depshash-target
-
-productivity-win32-x64/
